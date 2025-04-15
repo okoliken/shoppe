@@ -13,10 +13,10 @@
       </div>
     </div>
     <div class="relative">
-      <IconSearch />
+      <IconSearch class="absolute left-2.5 top-2.5" />
       <input
-        class="h-8 w-full !bg-gray-input"
-        type="search"
+        class="h-8 w-full !bg-gray-input rounded pl-[30px] outlin-none appearance-none"
+        type="text"
         placeholder="Search"
       />
     </div>

@@ -45,6 +45,7 @@
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
   --color-gray-input: var(--color-gray-input);
+  --color-gray-700: var(--gray-700);  // Add new variable
 }
 
 :root {
@@ -82,6 +83,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --color-gray-input: oklch(0.937 0 0); /* #EFEFEF equivalent in OKLCH */
+  --gray-700: oklch(0.5 0 0);  /* #707070 equivalent in OKLCH */
 }
 
 .dark {
@@ -118,6 +120,7 @@
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
   --color-gray-input: oklch(0.937 0 0); /* Same value since it's a neutral gray */
+  --gray-700: oklch(0.5 0 0);  /* #707070 equivalent in OKLCH */
 }
 
 @layer base {
