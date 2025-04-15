@@ -31,22 +31,46 @@
 
     <section class="mt-[42px]">
       <ul class="flex flex-col gap-2">
-        <li class="text-[#707070] font-light">CONTACT</li>
-        <li class="text-[#707070] font-light">TERMS OF SERVICES</li>
-        <li class="text-[#707070] font-light">SHIPPING AND RETURNS</li>
+        <li class="text-[#707070] font-light text-xs">CONTACT</li>
+        <li class="text-[#707070] font-light text-xs">TERMS OF SERVICES</li>
+        <li class="text-[#707070] font-light text-xs">SHIPPING AND RETURNS</li>
       </ul>
     </section>
 
-    <div class="mt-8">
-        <span class="text-black ">Follow us</span>
-        <svg width="47" height="1" viewBox="0 0 47 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-<line x1="-4.37114e-08" y1="0.5" x2="47" y2="0.499996" stroke="black"/>
-</svg>
-
+    <div class="mt-8 flex items-center gap-3">
+      <span class="text-black text-xs">Follow us</span>
+      <div class="flex items-center gap-2">
+        <svg
+          width="47"
+          height="1"
+          viewBox="0 0 47 1"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <line
+            x1="-4.37114e-08"
+            y1="0.5"
+            x2="47"
+            y2="0.499996"
+            stroke="black"
+          />
+        </svg>
+        <div class="flex items-center gap-4">
+          <IconFacebook />
+          <IconInstagram />
+          <IconTwitter />
+        </div>
+      </div>
     </div>
+    <p class="text-xs mt-[42px] text-[#707070]">
+      © {{ new Date().getFullYear() }} Shelly. Terms of use and privacy policy.
+    </p>
   </footer>
 </template>
 
 <script setup lang="ts">
 import Checkbox from "../ui/checkbox/Checkbox.vue";
+import IconInstagram from "../icons/IconInstagram.vue";
+import IconFacebook from "../icons/IconFacebook.vue";
+import IconTwitter from "../icons/IconTwitter.vue";
 </script>
