@@ -1,7 +1,7 @@
 <template>
-  <div class="@container">
-    <div class="p-4 md:p-0 @md:mx-auto @md:max-w-7xl">
-      <Header />
+  <div class="@container md:pt-8 xl:pt-16">
+    <div class="p-4 xl:p-0 @md:mx-auto @md:max-w-7xl">
+      <Header class="md:mb-6" />
       <main class="mt-4">
         <slot />
       </main>

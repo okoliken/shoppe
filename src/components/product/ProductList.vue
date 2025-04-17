@@ -1,16 +1,16 @@
 <template>
-  <div>
+  <div class="flex flex-col gap-4 lg:gap-8">
     <div class="flex items-center justify-between">
-      <h3 class="text-base">{{ title }}</h3>
+      <h3 class="text-base lg:text-[33px] lg:font-medium lg:leading-[43px]">{{ title }}</h3>
       <router-link
         v-if="link"
         :to="link"
-        class="text-sm text-[#A18A68] hover:text-gray-700"
+        class="text-sm lg:text-xl text-[#A18A68] hover:text-gray-700 lg:leading-[26px]"
       >
         View All
       </router-link>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-y-6 gap-x-4 lg:gap-x-[57px] lg:gap-y-[86px]">
       <Product v-for="product in products" :product :key="product.id" />
     </div>
   </div>

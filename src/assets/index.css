@@ -135,3 +135,28 @@
 body {
   @apply font-dm-sans text-sm;
 }
+.carousel {
+  --vc-pgn-background-color: white;
+  --vc-pgn-border-radius: 100%;
+  --vc-pgn-height: 9.142857551574707px;
+  --vc-pgn-width: 9.142857551574707px;
+  --vc-pgn-gap: 13.71px;
+}
+
+.carousel__pagination {
+  align-items: center !important;
+}
+.carousel__pagination-button {
+  height: 9.142857551574707 !important;
+  width: 9.142857551574707 !important;
+  border-radius: 100%;
+  background-color: white;
+}
+
+.carousel__pagination .carousel__pagination-button--active {
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 100%;
+  width: 16px;
+  height: 16px;
+}

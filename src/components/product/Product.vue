@@ -1,9 +1,11 @@
 <template>
   <div class="flex flex-col gap-1.5">
-    <div class="w-full h-[136px] lg:h-[380px] bg-[#EFEFEF] rounded-lg"></div>
-    <div class="flex flex-col gap-1">
-      <h3 class="text-sm">{{product.name}}</h3>
-      <p class="text-xs text-[#A18A68]">${{product.price}}</p>
+    <div class="w-full h-[136px] lg:h-[380px] bg-[#EFEFEF] rounded-lg">
+      <img src="" alt="">
+    </div>
+    <div class="flex flex-col gap-1 lg:mt-6">
+      <h3 class="text-sm lg:text-xl">{{product.name}}</h3>
+      <p class="text-xs text-[#A18A68] lg:text-xl">${{product.price}}</p>
     </div>
   </div>
 </template>
