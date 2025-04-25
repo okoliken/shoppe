@@ -1,15 +1,20 @@
 <template>
-  <section class="w-full">
-    <HeroSection />
-    <div class="mt-4 lg:mt-16">
-      <ProductList :products title="Shop The Latest" link="/" />
+  <div class="md:mt-24">
+    <div>
+      <h2 class="text-xl md:text-2xl lg:text-[33px] leading-[43px] font-medium flex">Shop <span class="hidden md:block md:ml-1">The Latest</span></h2>
     </div>
-  </section>
-</template>
 
+    <div class="flex gap-x-4 md:mt-6">
+      <div class="w-full max-w-[262px] hidden md:block"></div>
+
+      <div class="flex-1">
+        <ProductList reduce-product-spacing hide-header :products />
+      </div>
+    </div>
+  </div>
+</template>
 <script setup lang="ts">
 import ProductList from "@/components/product/ProductList.vue";
-import HeroSection from "@/components/hero/HeroSection.vue";
 
 const products = [
   { id: 1, name: "Product 1", price: 99.99, imageUrl: "" },

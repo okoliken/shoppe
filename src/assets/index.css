@@ -132,31 +132,158 @@
   }
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(0.97 0 0);
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.708 0 0);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.556 0 0);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  scroll-snap-align: center;
+  transition: all 0.3s ease;
+}
+
 body {
   @apply font-dm-sans text-sm;
 }
 .carousel {
   --vc-pgn-background-color: white;
   --vc-pgn-border-radius: 100%;
-  --vc-pgn-height: 9.142857551574707px;
-  --vc-pgn-width: 9.142857551574707px;
+  --vc-pgn-height: 7px;
+  --vc-pgn-width:7px;
   --vc-pgn-gap: 13.71px;
-}
-
-.carousel__pagination {
-  align-items: center !important;
-}
-.carousel__pagination-button {
-  height: 9.142857551574707 !important;
-  width: 9.142857551574707 !important;
-  border-radius: 100%;
-  background-color: white;
 }
 
 .carousel__pagination .carousel__pagination-button--active {
   background-color: transparent;
   border: 1px solid white;
   border-radius: 100%;
-  width: 16px;
-  height: 16px;
+  width: 12px;
+  height: 12px;
+  @apply hover:!bg-white
+}
+
+.carousel__pagination {
+  align-items: center !important;
+}
+
+.carousel__pagination .carousel__pagination-button{
+  @apply hover:!bg-white
+}
+
+@media (min-width:780px) {
+  .carousel {
+    --vc-pgn-background-color: white;
+    --vc-pgn-border-radius: 100%;
+    --vc-pgn-height: 9.142857551574707px;
+    --vc-pgn-width: 9.142857551574707px;
+    --vc-pgn-gap: 13.71px;
+  }
+
+  .carousel__pagination .carousel__pagination-button--active {
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 100%;
+    width: 16px;
+    height: 16px;
+  }
+  
+}
+
+/* Make clicks pass-through */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: #000000 !important;
+
+  position: fixed;
+  z-index: 1031;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 3.8px !important;
+}
+
+/* Fancy blur effect */
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow:
+    0 0 10px #000000,
+    0 0 5px #000000 !important;
+  opacity: 1;
+
+  -webkit-transform: rotate(3deg) translate(0px, -4px);
+  -ms-transform: rotate(3deg) translate(0px, -4px);
+  transform: rotate(3deg) translate(0px, -4px);
+}
+
+/* Remove these to get rid of the spinner */
+#nprogress .spinner {
+  display: block;
+  position: fixed;
+  z-index: 1031;
+  top: 15px;
+  right: 15px;
+}
+
+#nprogress .spinner-icon {
+  width: 20px !important;
+  height: 20px !important;
+  box-sizing: border-box;
+
+  border: solid 2px transparent;
+  border-top-color: #000000 !important;
+  border-left-color: #000000 !important;
+  border-radius: 50%;
+
+  -webkit-animation: nprogress-spinner 400ms linear infinite;
+  animation: nprogress-spinner 400ms linear infinite;
+}
+
+.nprogress-custom-parent {
+  overflow: hidden;
+  position: relative;
+}
+
+.nprogress-custom-parent #nprogress .spinner,
+.nprogress-custom-parent #nprogress .bar {
+  position: absolute;
+}
+
+@-webkit-keyframes nprogress-spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes nprogress-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
