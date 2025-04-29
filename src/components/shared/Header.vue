@@ -1,5 +1,5 @@
 <template>
-  <header class="flex flex-col gap-4">
+  <header v-bind="$attrs" class="flex flex-col gap-4 z-[9999] sticky top-0 py-4 lg:py-0 bg-white lg:static">
     <div class="flex items-center justify-between">
       <RouterLink to="/">
         <IconLogo />
@@ -37,8 +37,9 @@
             <IconCart />
             <IconUser class="hidden md:block" />
           </div>
-          <div @click="showMobileMenu = true" class="md:hidden block">
-            <IconMenuClosed />
+          <div  class="md:hidden block">
+            <IconMenuClosed @click="showMobileMenu = true" v-if="!showMobileMenu" />
+            <IconClose @click="showMobileMenu = false" v-else />
           </div>
         </div>
       </div>
@@ -46,15 +47,13 @@
     <div class="relative block md:hidden">
       <IconSearch class="absolute left-2.5 top-2.5" />
       <input
-        class="h-8 w-full !bg-gray-input rounded pl-[30px] outlin-none appearance-none"
+        class="h-8 w-full !bg-gray-input rounded pl-[30px] outlin-none appearance-none z-10"
         type="text"
         placeholder="Search"
       />
     </div>
 
-    <AnimatePresence>
-      <MobileMenu v-if="showMobileMenu" />
-    </AnimatePresence>
+      <MobileMenu :showMobileMenu="showMobileMenu" />
   </header>
   <div
     v-if="$route.path !== '/'"
@@ -69,8 +68,8 @@ import IconMenuClosed from "../icons/IconMenuClosed.vue";
 import IconUser from "../icons/IconUser.vue";
 import IconSearch from "../icons/IconSearch.vue";
 import IconSearchBig from "../icons/IconSearchBig.vue";
+import IconClose from "../icons/IconClose.vue";
 import MobileMenu from "./MobileMenu.vue";
-import { AnimatePresence } from "motion-v";
 import { ref } from "vue";
 
 const showMobileMenu = ref(false);
@@ -86,7 +85,7 @@ const links = [
   },
   {
     title: "Our Story",
-    link: "/",
+    link: "/our-story",
   },
 ];
 </script>

@@ -17,4 +17,5 @@ NProgress.configure({ easing: "ease", speed: 300 });
 app.use(createPinia())
 app.use(router)
 
+
 app.mount('#app')
