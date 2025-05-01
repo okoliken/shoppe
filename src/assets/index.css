@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-dm-sans: 'DM Sans', sans-serif;
+  --font-dm-sans: "DM Sans", sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -83,7 +83,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --color-gray-input: oklch(0.937 0 0); /* #EFEFEF equivalent in OKLCH */
-  --gray-700: oklch(0.5 0 0);  /* #707070 equivalent in OKLCH */
+  --gray-700: oklch(0.5 0 0); /* #707070 equivalent in OKLCH */
 }
 
 .dark {
@@ -119,8 +119,10 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
   --sidebar-ring: oklch(0.439 0 0);
-  --color-gray-input: oklch(0.937 0 0); /* Same value since it's a neutral gray */
-  --gray-700: oklch(0.5 0 0);  /* #707070 equivalent in OKLCH */
+  --color-gray-input: oklch(
+    0.937 0 0
+  ); /* Same value since it's a neutral gray */
+  --gray-700: oklch(0.5 0 0); /* #707070 equivalent in OKLCH */
 }
 
 @layer base {
@@ -134,7 +136,7 @@
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -151,10 +153,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
   scroll-snap-align: center;
-  transition: all 0.3s ease;
 }
 
 body {
@@ -164,7 +164,7 @@ body {
   --vc-pgn-background-color: white;
   --vc-pgn-border-radius: 100%;
   --vc-pgn-height: 7px;
-  --vc-pgn-width:7px;
+  --vc-pgn-width: 7px;
   --vc-pgn-gap: 13.71px;
 }
 
@@ -174,18 +174,18 @@ body {
   border-radius: 100%;
   width: 12px;
   height: 12px;
-  @apply hover:!bg-white
+  @apply hover:!bg-white;
 }
 
 .carousel__pagination {
   align-items: center !important;
 }
 
-.carousel__pagination .carousel__pagination-button{
-  @apply hover:!bg-white
+.carousel__pagination .carousel__pagination-button {
+  @apply hover:!bg-white;
 }
 
-@media (min-width:780px) {
+@media (min-width: 780px) {
   .carousel {
     --vc-pgn-background-color: white;
     --vc-pgn-border-radius: 100%;
@@ -201,7 +201,6 @@ body {
     width: 16px;
     height: 16px;
   }
-  
 }
 
 /* Make clicks pass-through */
@@ -228,9 +227,7 @@ body {
   right: 0px;
   width: 100px;
   height: 100%;
-  box-shadow:
-    0 0 10px #000000,
-    0 0 5px #000000 !important;
+  box-shadow: 0 0 10px #000000, 0 0 5px #000000 !important;
   opacity: 1;
   z-index: 9999 !important;
   -webkit-transform: rotate(3deg) translate(0px, -4px);

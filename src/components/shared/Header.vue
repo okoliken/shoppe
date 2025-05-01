@@ -1,16 +1,29 @@
 <template>
-  <header v-bind="$attrs" class="flex flex-col gap-4 z-[9999] sticky top-0 py-4 lg:py-0 bg-white lg:static">
+  <header
+    v-bind="$attrs"
+    :class="$route.path !== '/' ? 'md:border-b border-[#D8D8D8] md:pb-[17px]': ''"
+    class="flex flex-col gap-4 z-[55] sticky top-0 py-4 bg-white lg:static"
+  >
     <div class="flex items-center justify-between">
-      <RouterLink to="/">
+      <RouterLink to="/" class="transition-transform duration-300 hover:scale-105">
         <IconLogo />
       </RouterLink>
 
       <div class="flex items-center gap-x-12">
-        <ul class="hidden md:flex items-center gap-x-16">
+        <ul class="hidden md:flex gap-x-16">
           <li v-for="(link, index) in links" :key="index">
-            <RouterLink class="text-base leading-[16px]" :to="link.link">{{
-              link.title
-            }}</RouterLink>
+            <RouterLink
+              v-slot="{ isExactActive }"
+              class="text-base leading-[16px] transition-all duration-300"
+              :to="link.link"
+            >
+              <span
+                class="pb-4.5 border-b-2 border-transparent hover:border-black/30"
+                :class="isExactActive ? '!border-black' : ''"
+              >
+                {{ link.title }}
+              </span>
+            </RouterLink>
           </li>
         </ul>
 
@@ -33,13 +46,24 @@
 
         <div class="flex items-center gap-x-[17px]">
           <div class="flex items-center gap-x-9">
-            <IconSearchBig class="hidden md:block" />
-            <IconCart />
-            <IconUser class="hidden md:block" />
+            <button class="hover-icon-wrapper hidden md:block">
+              <IconSearchBig />
+            </button>
+            <button class="hover-icon-wrapper">
+              <IconCart />
+            </button>
+            <button class="hover-icon-wrapper hidden md:block">
+              <IconUser />
+            </button>
           </div>
-          <div  class="md:hidden block">
-            <IconMenuClosed @click="showMobileMenu = true" v-if="!showMobileMenu" />
-            <IconClose @click="showMobileMenu = false" v-else />
+          <div class="md:hidden block">
+            <button class="hover-icon-wrapper">
+              <IconMenuClosed
+                @click="showMobileMenu = true"
+                v-if="!showMobileMenu"
+              />
+              <IconClose @click="showMobileMenu = false" v-else />
+            </button>
           </div>
         </div>
       </div>
@@ -47,18 +71,14 @@
     <div class="relative block md:hidden">
       <IconSearch class="absolute left-2.5 top-2.5" />
       <input
-        class="h-8 w-full !bg-gray-input rounded pl-[30px] outlin-none appearance-none z-10"
+        class="h-8 w-full !bg-gray-input rounded pl-[30px] outlin-none appearance-none z-10 focus:ring-2 focus:ring-amber-600 focus:outline-none"
         type="text"
         placeholder="Search"
       />
     </div>
 
-      <MobileMenu :showMobileMenu="showMobileMenu" />
+    <MobileMenu :showMobileMenu="showMobileMenu" />
   </header>
-  <div
-    v-if="$route.path !== '/'"
-    class="w-full border-[0.5px] border-[#D8D8D8] hidden lg:block mt-[17px]"
-  ></div>
 </template>
 
 <script setup lang="ts">
@@ -81,7 +101,7 @@ const links = [
   },
   {
     title: "Blog",
-    link: "/",
+    link: "/blog",
   },
   {
     title: "Our Story",
@@ -89,3 +109,26 @@ const links = [
   },
 ];
 </script>
+
+<style scoped lang="postcss">
+.hover-icon-wrapper {
+  @apply transition-all duration-300 ease-in-out p-2 rounded-full hover:bg-amber-50;
+}
+
+.hover-icon-wrapper :deep(svg path),
+.hover-icon-wrapper :deep(svg line),
+.hover-icon-wrapper :deep(svg circle) {
+  @apply transition-colors duration-300;
+}
+
+.hover-icon-wrapper:hover :deep(svg path),
+.hover-icon-wrapper:hover :deep(svg line),
+.hover-icon-wrapper:hover :deep(svg circle) {
+  @apply text-black stroke-black;
+}
+
+/* Focus styles for accessibility */
+.hover-icon-wrapper:focus {
+  @apply outline-none ring-2 ring-black;
+}
+</style>

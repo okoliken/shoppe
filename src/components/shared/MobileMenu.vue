@@ -13,11 +13,14 @@
         <div class="p-6">
           
           <!-- Navigation links -->
-          <nav class="flex flex-col gap-4">
-            <a href="#" class="text-lg py-2 border-b border-gray-100">Home</a>
-            <a href="#" class="text-lg py-2 border-b border-gray-100">Shop</a>
-            <a href="#" class="text-lg py-2 border-b border-gray-100">About</a>
-            <a href="#" class="text-lg py-2 border-b border-gray-100">Contact</a>
+          <nav class="flex flex-col gap-6">
+            <a href="#" class="text-xl py-2">Home</a>
+            <a href="#" class="text-xl py-2">Shop</a>
+            <a href="#" class="text-xl py-2">About</a>
+            <a href="#" class="text-xl py-2">Blog</a>
+            <a href="#" class="text-xl py-2">Help</a>
+            <a href="#" class="text-xl py-2">Contact</a>
+            <a href="#" class="text-xl py-2">Search</a>
           </nav>
         </div>
       </motion.div>
@@ -27,19 +30,21 @@
 
 <script lang="ts" setup>
 import { motion, AnimatePresence } from 'motion-v'
+import { watchEffect } from 'vue';
 
 
 const props = defineProps<{
   showMobileMenu: boolean
 }>()
 
+watchEffect(() => {
+  if (props.showMobileMenu) {
+   setTimeout(() => {
+      document.body.style.overflow = 'hidden'
+    }, 300)
+  } else {
+    document.body.style.overflow = ''
+  }
+})
 
-const emit = defineEmits<{
-  (e: 'close'): void
-}>()
-
-
-const closeMenu = () => {
-  emit('close')
-}
 </script>

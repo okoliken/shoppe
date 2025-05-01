@@ -11,7 +11,7 @@ import router from './router'
 const app = createApp(App)
 
 
-NProgress.configure({ easing: "ease", speed: 300 });
+NProgress.configure({ easing: "ease", speed: 300, showSpinner: false });
 
 
 app.use(createPinia())
