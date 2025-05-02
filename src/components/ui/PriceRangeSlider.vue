@@ -119,7 +119,6 @@ onMounted(() => {
 <style scoped>
 /* Base styling for range inputs */
 input[type="range"] {
-  -webkit-appearance: none;
   width: 100%;
   height: 2px;
   background: transparent;

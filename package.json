@@ -11,6 +11,7 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
+    "@inotom/vue-rating-star": "^2.0.0",
     "@tailwindcss/vite": "^4.1.4",
     "@vueuse/core": "^13.1.0",
     "class-variance-authority": "^0.7.1",

@@ -10,7 +10,7 @@
       </RouterLink>
 
       <div class="flex items-center gap-x-12">
-        <ul class="hidden md:flex gap-x-16">
+        <ul class="hidden md:flex md:items-center gap-x-16">
           <li v-for="(link, index) in links" :key="index">
             <RouterLink
               v-slot="{ isExactActive }"
@@ -46,18 +46,18 @@
 
         <div class="flex items-center gap-x-[17px]">
           <div class="flex items-center gap-x-9">
-            <button class="hover-icon-wrapper hidden md:block">
+            <button class="hidden md:block">
               <IconSearchBig />
             </button>
-            <button class="hover-icon-wrapper">
+            <button>
               <IconCart />
             </button>
-            <button class="hover-icon-wrapper hidden md:block">
+            <button class="hidden md:block">
               <IconUser />
             </button>
           </div>
           <div class="md:hidden block">
-            <button class="hover-icon-wrapper">
+            <button>
               <IconMenuClosed
                 @click="showMobileMenu = true"
                 v-if="!showMobileMenu"
@@ -110,25 +110,3 @@ const links = [
 ];
 </script>
 
-<style scoped lang="postcss">
-.hover-icon-wrapper {
-  @apply transition-all duration-300 ease-in-out p-2 rounded-full hover:bg-amber-50;
-}
-
-.hover-icon-wrapper :deep(svg path),
-.hover-icon-wrapper :deep(svg line),
-.hover-icon-wrapper :deep(svg circle) {
-  @apply transition-colors duration-300;
-}
-
-.hover-icon-wrapper:hover :deep(svg path),
-.hover-icon-wrapper:hover :deep(svg line),
-.hover-icon-wrapper:hover :deep(svg circle) {
-  @apply text-black stroke-black;
-}
-
-/* Focus styles for accessibility */
-.hover-icon-wrapper:focus {
-  @apply outline-none ring-2 ring-black;
-}
-</style>

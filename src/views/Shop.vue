@@ -30,11 +30,44 @@ import ProductFilterDrawer from "@/components/ui/ProductFilterDrawer.vue";
 import ProductFilterForm from "@/components/ui/ProductFilterForm.vue";
 
 const products = [
-  { id: 1, name: "Product 1", price: 99.99, imageUrl: ImageOne },
-  { id: 2, name: "Product 2", price: 149.99, imageUrl: ImageTwo },
-  { id: 3, name: "Product 3", price: 199.99, imageUrl: ImageThree },
-  { id: 4, name: "Product 4", price: 299.99, imageUrl: ImageFour },
-  { id: 5, name: "Product 5", price: 399.99, imageUrl: ImageFive },
-  { id: 6, name: "Product 6", price: 499.99, imageUrl: ImageSix },
+  { 
+    id: 1, 
+    name: "Lira Earrings", 
+    price: 99.99,
+    discountPrice: 79.99, 
+    imageUrl: ImageOne 
+  },
+  { 
+    id: 2, 
+    name: "Hal Earrings", 
+    price: 149.99,
+    imageUrl: ImageTwo 
+  },
+  { 
+    id: 3, 
+    name: "Kaede Hair Pin Set Of 3", 
+    price: 199.99,
+    discountPrice: 159.99, 
+    imageUrl: ImageThree 
+  },
+  { 
+    id: 4, 
+    name: "Hair Pin Set of 3", 
+    price: 299.99,
+    imageUrl: ImageFour 
+  },
+  { 
+    id: 5, 
+    name: "Plaine Necklace", 
+    price: 399.99,
+    discountPrice: 299.99,
+    imageUrl: ImageFive 
+  },
+  { 
+    id: 6, 
+    name: "Yuki Hair Pin Set of 3", 
+    price: 499.99,
+    imageUrl: ImageSix
+  }
 ];
 </script>

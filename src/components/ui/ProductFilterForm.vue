@@ -35,7 +35,7 @@
           <SelectTrigger class="w-full !h-[53px] border-[#D8D8D8]">
             <SelectValue placeholder="Price Range" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent body-lock>
             <SelectGroup>
               <SelectLabel>Price Range</SelectLabel>
               <SelectItem
@@ -57,7 +57,7 @@
           <SelectTrigger class="w-full !h-[53px] border-[#D8D8D8]">
             <SelectValue placeholder="Category" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent body-lock>
             <SelectGroup>
               <SelectLabel>Category</SelectLabel>
               <SelectItem

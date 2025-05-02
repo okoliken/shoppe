@@ -8,34 +8,28 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
-      meta: {
-        transition:"zoom"
-      }
+      component: HomeView
     },
     {
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue'),
-      meta: {
-        transition:"zoom"
-      }
     },
     {
       path: '/shop',
       name: 'shop',
       component: () => import('../views/Shop.vue'),
-      meta: {
-        transition:"zoom"
-      }
     },
     {
       path: '/our-story',
       name: 'about',
       component: () => import('../views/AboutView.vue'),
-      meta: {
-        transition:"zoom"
-      }
+    },
+    {
+      path:'/product/:id',
+      name: 'product',
+      component: () => import('../views/Product.vue'),
+      props: true,
     }
   ],
 })
