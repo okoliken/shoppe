@@ -8,7 +8,7 @@
   >
     <Slide v-for="slide in slides" :key="slide.id">
       <div class="relative w-full">
-        <div class="absolute inset-0 bg-black/30 md:bg-black/20 rounded-2xl z-10"></div>
+        <div class="absolute inset-0 bg-black/10 md:bg-black/10 rounded-2xl z-10"></div>
         <img
           :src="slide.image"
           :alt="slide.alt"
@@ -38,6 +38,10 @@
 import { Carousel, Slide, Pagination } from "vue3-carousel";
 import ImageOne from "@/assets/images/carousel/image.webp";
 import ImageTwo from "@/assets/images/carousel/image2.png";
+import ImageThree from "@/assets/images/carousel/image3.jpg";
+import ImageFour from "@/assets/images/carousel/image4.jpg";
+import ImageFive from "@/assets/images/carousel/image5.jpg";
+import ImageSix from "@/assets/images/carousel/image6.jpg";
 import Button from "@/components/ui/button/Button.vue";
 
 interface SlideItem {
@@ -60,6 +64,34 @@ const slides: SlideItem[] = [
     id: 2,
     image: ImageTwo,
     alt: "hero-two",
+    title: "Gold big hoops",
+    price: "$ 68,00"
+  },
+  {
+    id: 3,
+    image: ImageThree,
+    alt: "hero-three",
+    title: "Gold big hoops",
+    price: "$ 68,00"
+  },
+  {
+    id: 4,
+    image: ImageFour,
+    alt: "hero-four",
+    title: "Gold big hoops",
+    price: "$ 68,00"
+  },
+  {
+    id: 5,
+    image: ImageFive,
+    alt: "hero-five",
+    title: "Gold big hoops",
+    price: "$ 68,00"
+  },
+  {
+    id: 6,
+    image: ImageSix,
+    alt: "hero-six",
     title: "Gold big hoops",
     price: "$ 68,00"
   }

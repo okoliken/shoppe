@@ -1,6 +1,5 @@
 <template>
     <div>
-      <!-- Drawer component with improved accessibility -->
       <Drawer>
         <DrawerTrigger class="flex items-center gap-x-2 md:hidden mt-4">
           <IconFilter />
@@ -37,5 +36,5 @@
     DrawerTrigger,
   } from "@/components/ui/drawer";
   import IconFilter from "@/components/icons/IconFilter.vue";
-  import ProductFilterForm from "@/components/ui/ProductFilterForm.vue";
+  import ProductFilterForm from "@/components/product/ProductFilterForm.vue";
   </script>

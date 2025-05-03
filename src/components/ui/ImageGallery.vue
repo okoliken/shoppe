@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-row-reverse flex-1 gap-x-10"
+    class="flex flex-col flex-1 gap-y-4"
     @keydown.left="previousImage"
     @keydown.right="nextImage"
     tabindex="0"
@@ -8,44 +8,66 @@
     aria-label="Image gallery"
     :aria-roledescription="'carousel with ' + images.length + ' slides'"
   >
-    <!-- Main image display -->
-    <div class="relative overflow-hidden rounded-xl w-[540px] h-full max-h-[600px] aspect-square">
-      <TransitionGroup name="slide">
+    <div class="flex flex-row-reverse gap-x-10">
+      <!-- Main image display -->
+      <div>
         <div
+          class="relative overflow-hidden rounded-xl w-[540px] h-full max-h-[600px] aspect-square"
+        >
+          <TransitionGroup name="slide">
+            <div
+              v-for="(image, index) in images"
+              :key="image.src"
+              v-show="currentImageIndex === index"
+              class="absolute inset-0 w-full h-full"
+              :aria-hidden="currentImageIndex !== index"
+            >
+              <img
+                :src="image.src"
+                :alt="image.alt || 'Gallery image ' + (index + 1)"
+                class="w-full max-w-[540px] h-full max-h-[600px] object-center"
+                draggable="false"
+              />
+            </div>
+          </TransitionGroup>
+        </div>
+        <div class="relative w-full h-[2px] bg-gray-200 mt-4">
+          <div
+            class="absolute top-0 left-0 h-[2px] bg-gray-600 transition-all duration-300 max-w-[540px]"
+            :style="{
+              width: `${100 / images.length}%`,
+              left: `${(currentImageIndex * 100) / images.length}%`,
+            }"
+            role="progressbar"
+            :aria-valuenow="currentImageIndex + 1"
+            :aria-valuemin="1"
+            :aria-valuemax="images.length"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Thumbnail navigation (hidden on mobile) -->
+      <div class="hidden md:flex flex-col gap-10 ml-4">
+        <button
           v-for="(image, index) in images"
-          :key="image.src"
-          v-show="currentImageIndex === index"
-          class="absolute inset-0 w-full h-full"
-          :aria-hidden="currentImageIndex !== index"
+          :key="'thumb-' + index"
+          class="overflow-hidden rounded-xl aspect-square relative transition-all duration-150 ease-in opacity-50 hover:opacity-100"
+          :class="{
+            'ring-2 ring-gray-600 opacity-100': currentImageIndex === index,
+          }"
+          @click="setCurrentImage(index)"
+          :aria-label="`View image ${index + 1}`"
+          role="button"
+          :aria-pressed="currentImageIndex === index"
         >
           <img
             :src="image.src"
-            :alt="image.alt || 'Gallery image ' + (index + 1)"
-            class="w-full max-w-[540px] h-full max-h-[600px] object-center"
+            :alt="`Thumbnail ${index + 1}`"
             draggable="false"
+            class="w-full max-w-[120px] h-full max-h-[120px] object-cover"
           />
-        </div>
-      </TransitionGroup>
-    </div>
-
-    <!-- Thumbnail navigation (hidden on mobile) -->
-    <div class="hidden md:flex flex-col gap-10 ml-4">
-      <button
-        v-for="(image, index) in images"
-        :key="'thumb-' + index"
-        class="overflow-hidden rounded-xl aspect-square relative transition-all duration-75 ease-in opacity-60"
-        :class="{ 'ring-2 ring-[#707070] opacity-100': currentImageIndex === index }"
-        @click="setCurrentImage(index)"
-        :aria-label="`View image ${index + 1}`"
-        :aria-pressed="currentImageIndex === index"
-      >
-        <img
-          :src="image.src"
-          :alt="`Thumbnail ${index + 1}`"
-          draggable="false"
-          class="w-full max-w-[120px] h-full max-h-[120px] object-cover"
-        />
-      </button>
+        </button>
+      </div>
     </div>
 
     <!-- A11y live region for screen readers -->
@@ -94,9 +116,6 @@ export default defineComponent({
 
     // Set focus on the gallery container to enable keyboard navigation
     onMounted(() => {
-      if (galleryRef.value) {
-        galleryRef.value.focus();
-      }
       startAutoplay();
     });
 

@@ -5,7 +5,7 @@
       <input
         type="text"
         class="w-full border-b border-[#D8D8D8] pb-3 outline-none appearance-none text-base"
-        placeholder="Search..."
+        placeholder="Search by name"
         aria-label="Search products"
       />
       <svg

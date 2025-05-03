@@ -26,8 +26,12 @@ import ImageThree from "../assets/images/products/Img03.png";
 import ImageFour from "../assets/images/products/Img04.png";
 import ImageFive from "../assets/images/products/Img05.png";
 import ImageSix from "../assets/images/products/Img06.png";
-import ProductFilterDrawer from "@/components/ui/ProductFilterDrawer.vue";
-import ProductFilterForm from "@/components/ui/ProductFilterForm.vue";
+import ImageSeven from "@/assets/images/carousel/image4.jpg";
+import ImageEight from "../assets/images/carousel/image6.jpg"
+import Ring from "@/assets/images/products/ring.jpg";
+import ProductFilterDrawer from "@/components/product/ProductFilterDrawer.vue";
+import ProductFilterForm from "@/components/product/ProductFilterForm.vue";
+
 
 const products = [
   { 
@@ -44,11 +48,10 @@ const products = [
     imageUrl: ImageTwo 
   },
   { 
-    id: 3, 
-    name: "Kaede Hair Pin Set Of 3", 
-    price: 199.99,
-    discountPrice: 159.99, 
-    imageUrl: ImageThree 
+    id: 7, 
+    name: "Gold Big Hoops", 
+    price: 599.99,
+    imageUrl: ImageSeven
   },
   { 
     id: 4, 
@@ -57,17 +60,36 @@ const products = [
     imageUrl: ImageFour 
   },
   { 
-    id: 5, 
-    name: "Plaine Necklace", 
-    price: 399.99,
-    discountPrice: 299.99,
-    imageUrl: ImageFive 
+    id: 3, 
+    name: "Kaede Hair Pin Set Of 3", 
+    price: 199.99,
+    discountPrice: 159.99, 
+    imageUrl: ImageThree 
+  },
+  { 
+    id: 8, 
+    name: "Gold Big Hoops", 
+    price: 599.99,
+    imageUrl: ImageEight
   },
   { 
     id: 6, 
     name: "Yuki Hair Pin Set of 3", 
     price: 499.99,
     imageUrl: ImageSix
+  },
+  { 
+    id: 5, 
+    name: "Plaine Necklace", 
+    price: 399.99,
+    discountPrice: 299.99,
+    imageUrl: ImageFive 
+  },
+  {
+    id:6,
+    name: "Gold Big Hoops",
+    price: 599.99,
+    imageUrl: Ring
   }
 ];
 </script>
