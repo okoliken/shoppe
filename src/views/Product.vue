@@ -1,14 +1,13 @@
 <template>
   <div>
-    <div class="grid grid-cols-12 gap-x-[60px] lg:mt-32">
+    <div class="flex items-center gap-x-[60px] lg:mt-32">
       <ImageGallery
         :images="galleryImages"
         :autoplay-interval="5000"
         :start-index="0"
-        class="col-span-7"
         @image-change="() => {}"
       />
-      <div class="col-span-5">
+      <div>
         <div class="flex flex-col gap-y-[23px]">
           <h1 class="text-[26px]">Lira Earrings</h1>
           <p class="text-[#A18A68] text-xl">$ 20,00</p>

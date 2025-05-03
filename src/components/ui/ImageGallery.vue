@@ -47,7 +47,7 @@
       </div>
 
       <!-- Thumbnail navigation (hidden on mobile) -->
-      <div class="hidden md:flex flex-col gap-10 ml-4">
+      <div class="hidden lg:flex flex-col gap-10 ml-4 w-[120px]">
         <button
           v-for="(image, index) in images"
           :key="'thumb-' + index"
