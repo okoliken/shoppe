@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="flex items-center gap-x-[60px] lg:mt-32">
+    <div class="flex flex-col lg:flex-row lg:items-center lg:gap-x-[60px] lg:mt-32">
       <ImageGallery
         :images="galleryImages"
         :autoplay-interval="5000"
         :start-index="0"
         @image-change="() => {}"
       />
-      <div>
-        <div class="flex flex-col gap-y-[23px]">
-          <h1 class="text-[26px]">Lira Earrings</h1>
-          <p class="text-[#A18A68] text-xl">$ 20,00</p>
+      <div class="mt-6 lg:mt-0">
+        <div class="flex flex-col md:gap-y-[23px]">
+          <h1 class="text-lg lg:text-[26px]">Lira Earrings</h1>
+          <p class="text-[#A18A68] text-base lg:text-xl">$ 20,00</p>
         </div>
         <div class="mt-16">
           <div class="mb-5 flex items-center gap-x-6">

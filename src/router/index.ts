@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { nextTick } from 'vue'
 import HomeView from '../views/HomeView.vue'
 import Nprogress from "nprogress";
 
@@ -32,6 +33,32 @@ const router = createRouter({
       props: true,
     }
   ],
+  // For Vue Router with page transitions
+  scrollBehavior(to, from, savedPosition) {
+    // If navigating to a new page
+    if (from.path !== to.path) {
+      return new Promise((resolve) => {
+        nextTick(() => {
+          setTimeout(() => {
+            if (savedPosition) {
+              resolve(savedPosition);
+            } else {
+              window.scrollTo(0, 0);
+              resolve({ top: 0 });
+          setTimeout  }
+          }, 600); 
+        });
+      });
+    }
+    
+    // If using browser back/forward
+    if (savedPosition) {
+      return savedPosition;
+    }
+    
+    // Default behavior
+    return { top: 0 };
+  }
 })
 
 router.beforeEach(() => {

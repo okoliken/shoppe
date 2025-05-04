@@ -8,11 +8,11 @@
     aria-label="Image gallery"
     :aria-roledescription="'carousel with ' + images.length + ' slides'"
   >
-    <div class="flex flex-row-reverse gap-x-10">
+    <div class="flex flex-col md:flex-row-reverse md:gap-x-10">
       <!-- Main image display -->
-      <div>
+      <div class="w-full lg:w-auto">
         <div
-          class="relative overflow-hidden rounded-xl w-[540px] h-full max-h-[600px] aspect-square"
+          class="relative overflow-hidden rounded-xl w-full lg:w-[540px] h-[374px] md:h-[600px] aspect-square"
         >
           <TransitionGroup name="slide">
             <div
@@ -25,15 +25,16 @@
               <img
                 :src="image.src"
                 :alt="image.alt || 'Gallery image ' + (index + 1)"
-                class="w-full max-w-[540px] h-full max-h-[600px] object-center"
+                class="w-full h-full object-cover"
                 draggable="false"
               />
             </div>
           </TransitionGroup>
         </div>
-        <div class="relative w-full h-[2px] bg-gray-200 mt-4">
+        <!-- Progress bar -->
+        <div class="relative w-full h-[2px] bg-[#D8D8D8] mt-4">
           <div
-            class="absolute top-0 left-0 h-[2px] bg-gray-600 transition-all duration-300 max-w-[540px]"
+            class="absolute top-0 left-0 h-[2px] bg-[#707070] transition-all duration-300"
             :style="{
               width: `${100 / images.length}%`,
               left: `${(currentImageIndex * 100) / images.length}%`,
@@ -47,7 +48,7 @@
       </div>
 
       <!-- Thumbnail navigation (hidden on mobile) -->
-      <div class="hidden lg:flex flex-col gap-10 ml-4 w-[120px]">
+      <div class="hidden md:flex flex-col gap-10 ml-4 w-[120px] h-full">
         <button
           v-for="(image, index) in images"
           :key="'thumb-' + index"
@@ -64,15 +65,10 @@
             :src="image.src"
             :alt="`Thumbnail ${index + 1}`"
             draggable="false"
-            class="w-full max-w-[120px] h-full max-h-[120px] object-cover"
+            class="w-full h-full object-cover"
           />
         </button>
       </div>
-    </div>
-
-    <!-- A11y live region for screen readers -->
-    <div class="sr-only" aria-live="polite">
-      Showing image {{ currentImageIndex + 1 }} of {{ images.length }}
     </div>
   </div>
 </template>

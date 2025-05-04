@@ -1,6 +1,22 @@
-<script setup lang="ts">
+<script lang="ts">
 import { RouterView } from "vue-router";
+import { defineComponent } from 'vue'
 import AppLayout from "./layouts/AppLayout.vue";
+import useScrollToTop from "./composables/useScrollToTop";
+
+export default defineComponent({
+  name: "App",
+  components: {
+    AppLayout,
+    RouterView,
+  },
+  setup() {
+    useScrollToTop();
+
+    return {};
+  },
+});
+
 </script>
 
 <template>
