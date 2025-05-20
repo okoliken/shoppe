@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto flex flex-col">
     <div class="mt-4 lg:mt-[96px]">
-      <h3 class="text-left lg:text-center text-lg lg:text-[33px] lg:font-medium">
+      <h3 v-if="cartItems.length" class="text-left lg:text-center text-lg lg:text-[33px] lg:font-medium">
         Shopping Cart
       </h3>
     </div>
