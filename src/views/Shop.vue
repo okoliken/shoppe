@@ -98,8 +98,9 @@ const filteredProducts = computed(() => {
     const matchesOnSale = !filters.value.onSale || 
       (product.discountPrice !== undefined);
     
-    // In Stock filter (assuming all products are in stock for this example)
-    const matchesInStock = filters.value.inStock || true;
+    // In Stock filter
+    const matchesInStock = !filters.value.inStock || 
+      (product.inStock === true); // Assumes product has an `inStock` boolean property
     
     return matchesSearch && matchesCategory && matchesPrice && matchesOnSale && matchesInStock;
   });
@@ -120,6 +121,7 @@ function getCategoryForProduct(name: string): string {
 
 const updateFilters = (newFilters: Partial<FilterState>) => {
   filters.value = { ...filters.value, ...newFilters };
+  console.log('Updated filters:', filters.value);
 }
 
 const products = [
