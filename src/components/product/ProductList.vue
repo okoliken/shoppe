@@ -1,5 +1,6 @@
 <template>
   <div class="flex flex-col gap-4 lg:gap-8">
+    <!-- Header -->
     <div v-if="!hideHeader" class="flex items-center justify-between">
       <h3 class="text-base lg:text-[33px] lg:font-medium lg:leading-[43px]">
         {{ title }}
@@ -12,7 +13,15 @@
         View All
       </router-link>
     </div>
+
+    <!-- Empty State -->
+    <div v-if="products.length === 0" class="flex items-center justify-center py-10">
+      <p class="text-gray-500 text-lg">No products available</p>
+    </div>
+
+    <!-- Product Grid -->
     <div
+      v-else
       :class="
         cn(
           'grid grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-4',
@@ -20,7 +29,7 @@
         )
       "
     >
-      <Product v-for="product in products" :product :key="product.id" />
+      <Product v-for="product in products" :product="product" :key="product.id" />
     </div>
   </div>
 </template>

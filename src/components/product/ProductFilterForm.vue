@@ -4,9 +4,10 @@
     <div class="relative lg:w-[262px] flex-1">
       <input
         type="text"
-        class="w-full border-b border-[#D8D8D8] pb-3 outline-none appearance-none text-base"
+        :value="filters.search"
+        @input="updateSearch"
+        class="w-full border-b border-[#D8D8D8] pb-3 outline-none"
         placeholder="Search by name"
-        aria-label="Search products"
       />
       <svg
         class="absolute right-0 top-1"
@@ -76,22 +77,27 @@
     <!-- Price range slider -->
     <div class="mt-[39px]">
       <PriceRangeSlider
+        @update:range="updatePriceRange"
         :min-value="0"
         :max-value="10000"
-        :initial-min="2500"
-        :initial-max="8500"
-        :price-gap="500"
-        currency="$"
+        :initial-min="filters.minPrice"
+        :initial-max="filters.maxPrice"
       />
-
       <!-- Switches with improved accessibility -->
       <div class="flex items-center justify-between mt-10">
         <label class="text-base cursor-pointer" for="on-sale">On sale</label>
-        <Switch id="on-sale" />
+        <Switch
+          v-model="filters.onSale"
+          @update:modelValue="(v) => emit('update:filters', { onSale: v })"
+        />
       </div>
       <div class="flex items-center justify-between mt-14">
         <label class="text-base cursor-pointer" for="in-stock">In stock</label>
-        <Switch id="in-stock" />
+
+        <Switch
+          v-model="filters.inStock"
+          @update:modelValue="(v) => emit('update:filters', { inStock: v })"
+        />
       </div>
     </div>
   </form>
@@ -110,6 +116,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+interface FilterState {
+  search: string;
+  priceRange: string;
+  category: string;
+  minPrice: number;
+  maxPrice: number;
+  onSale: boolean;
+  inStock: boolean;
+}
+
 const priceRanges = [
   { value: "0-50", label: "$0 - $50" },
   { value: "50-100", label: "$50 - $100" },
@@ -123,6 +139,27 @@ const categories = [
   { value: "necklaces", label: "Necklaces" },
   { value: "rings", label: "Rings" },
 ];
+
+const props = defineProps<{
+  filters: FilterState;
+}>();
+
+const emit = defineEmits<{
+  "update:filters": [filters: Partial<FilterState>];
+}>();
+
+const updateSearch = (e: Event) => {
+  emit("update:filters", {
+    search: (e.target as HTMLInputElement).value,
+  });
+};
+
+const updatePriceRange = (range: { min: number; max: number }) => {
+  emit("update:filters", {
+    minPrice: range.min,
+    maxPrice: range.max,
+  });
+};
 </script>
 
 <style scoped>

@@ -11,14 +11,23 @@
     </div>
 
     <div class="flex gap-x-8 mt-4 md:mt-6">
-      <ProductFilterForm class="hidden md:block" />
+      <ProductFilterForm 
+        class="hidden md:block" 
+        :filters="filters"
+        @update:filters="updateFilters"
+      />
       <div class="flex-1">
-        <ProductList reduce-product-spacing hide-header :products />
+        <ProductList 
+          reduce-product-spacing 
+          hide-header 
+          :products="filteredProducts" 
+        />
       </div>
     </div>
   </div>
 </template>
 <script setup lang="ts">
+import { ref, computed } from 'vue';
 import ProductList from "@/components/product/ProductList.vue";
 import ImageOne from "../assets/images/products/Img01.png";
 import ImageTwo from "../assets/images/products/Img02.png";
@@ -32,6 +41,40 @@ import Ring from "@/assets/images/products/ring.jpg";
 import ProductFilterDrawer from "@/components/product/ProductFilterDrawer.vue";
 import ProductFilterForm from "@/components/product/ProductFilterForm.vue";
 
+interface FilterState {
+  search: string
+  priceRange: string
+  category: string
+  minPrice: number
+  maxPrice: number
+  onSale: boolean
+  inStock: boolean
+}
+
+const filters = ref<FilterState>({
+  search: '',
+  priceRange: '',
+  category: '',
+  minPrice: 0,
+  maxPrice: 10000,
+  onSale: false,
+  inStock: true
+})
+
+const filteredProducts = computed(() => {
+  return products.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(filters.value.search.toLowerCase())
+    const matchesCategory = !filters.value.category || filters.value.category === 'all'
+    const matchesPrice = product.price >= filters.value.minPrice && product.price <= filters.value.maxPrice
+    const matchesOnSale = !filters.value.onSale || product.discountPrice !== undefined
+    
+    return matchesSearch && matchesCategory && matchesPrice && matchesOnSale
+  })
+})
+
+const updateFilters = (newFilters: Partial<FilterState>) => {
+  filters.value = { ...filters.value, ...newFilters }
+}
 
 const products = [
   { 

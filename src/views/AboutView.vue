@@ -55,7 +55,7 @@
         Sustainable Practices
       </h3>
       <img
-        src="../assets/images/img2.png"
+        src="../assets/images/Img2.png"
         alt="Sustainable jewelry creation process"
       />
     </div>
