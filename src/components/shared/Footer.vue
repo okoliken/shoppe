@@ -49,13 +49,20 @@
             class="flex flex-col gap-2 lg:flex-row lg:items-center lg:gap-x-[41px]"
           >
             <li class="text-[#707070] font-light text-xs lg:text-base">
-              CONTACT
+              <RouterLink v-slot="{ isExactActive }" to="/">
+                <span>CONTACT</span>
+              </RouterLink>
             </li>
             <li class="text-[#707070] font-light text-xs lg:text-base">
-              TERMS OF SERVICES
+              <RouterLink v-slot="{ isExactActive }" to="/privacy-policy">
+                <span :class="isExactActive ? 'underline' : ''">TERMS OF SERVICES</span>
+              </RouterLink>
+              
             </li>
             <li class="text-[#707070] font-light text-xs lg:text-base">
-              SHIPPING AND RETURNS
+              <RouterLink v-slot="{ isExactActive }" to="/">
+                <span>SHIPPING AND RETURNS</span>
+              </RouterLink>
             </li>
           </ul>
         </section>
@@ -93,7 +100,7 @@
         </div>
       </div>
       <p class="text-xs mt-[42px] lg:mt-0 text-[#707070] lg:text-base">
-        © {{ new Date().getFullYear() }} Shelly. Terms of use and privacy
+       <span class="text-black"> © {{ new Date().getFullYear() }} Shelly</span>. Terms of use <span class="text-black">and</span> privacy
         policy.
       </p>
     </div>

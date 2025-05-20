@@ -31,6 +31,16 @@ const router = createRouter({
       name: 'product',
       component: () => import('../views/Product.vue'),
       props: true,
+    },
+    {
+      path: '/privacy-policy',
+      name: 'privacy-policy',
+      component: () => import('../views/PrivacyPolicy.vue'),
+    },
+    {
+      path: "/shopping-cart",
+      name: "shopping cart",
+      component: () => import('../views/Cart.vue')
     }
   ],
   // For Vue Router with page transitions
