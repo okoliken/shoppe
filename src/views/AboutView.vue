@@ -26,7 +26,7 @@
         Our Design Philosophy
       </h3>
       <img
-        src="../assets/images/img.png"
+        src="../assets/images/Img.png"
         alt="Craftsman working on fine jewelry design"
       />
     </div>
