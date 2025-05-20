@@ -14,8 +14,8 @@
           <h1 class="text-lg lg:text-[26px]">Lira Earrings</h1>
           <p class="text-[#A18A68] text-base lg:text-xl">$ 20,00</p>
         </div>
-        <div class="mt-16">
-          <div class="mb-5 flex items-center gap-x-6">
+        <div class="mt-6 lg:mt-16">
+          <div class="mb-5 md:flex items-center gap-x-6 hidden">
             <star-rating
               :star-size="25"
               :rating="averageRating"
@@ -29,7 +29,7 @@
               {{ totalReviews === 1 ? "review" : "reviews" }}</label
             >
           </div>
-          <p class="text-[#707070] text-base leading-[27px]">
+          <p class="text-[#707070] text-xs lg:text-base leading-[20px] lg:leading-[27px]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
             placerat, augue a volutpat hendrerit, sapien tortor faucibus augue,
             a maximus elit ex vitae libero. Sed quis mauris eget arcu facilisis
@@ -37,12 +37,14 @@
           </p>
 
           <div class="mt-12 flex items-center gap-x-6">
-            <ItemCounter class="w-[120px]" />
-            <Button variant="outlineDark" class="flex-1">ADD TO CART</Button>
+            <ItemCounter class="w-[120px] hidden md:block" />
+            <Button variant="outlineDark" class="flex-1" @click="addToCartHandler">
+              ADD TO CART
+            </Button>
           </div>
 
           <!-- socials -->
-          <div class="mt-20 flex items-center gap-x-10">
+          <div class="mt-20 hidden md:flex items-center gap-x-10">
             <button><IconHeart /></button>
             <div class="h-[19.66389465332033px] border border-[#D8D8D8]"></div>
             <div class="flex items-center gap-x-7">
@@ -60,7 +62,7 @@
               </button>
             </div>
           </div>
-          <ul class="flex flex-col gap-2 text-base mt-[38px]">
+          <ul class="hidden md:flex flex-col gap-2 text-base mt-[38px]">
             <li>
               <p>SKU: <span class="text-[#707070] ml-4">12</span></p>
             </li>
@@ -151,6 +153,20 @@ import Button from "@/components/ui/button/Button.vue";
 import TabComponent from "@/components/TabComponent.vue";
 import ProductList from "@/components/product/ProductList.vue";
 import Reviews from "@/components/Reviews.vue";
+import { useCartStore } from "@/stores/cartStore";
+
+const cartStore = useCartStore();
+const showAlert = ref(false);
+
+const addToCartHandler = (): void => {
+  cartStore.addToCart({
+    id: 1,
+    name: "Lira Earrings",
+    price: 20.0,
+    imageUrl: galleryImages[0].src,
+    quantity: 1,
+  });
+};
 
 const galleryImages = [
   {

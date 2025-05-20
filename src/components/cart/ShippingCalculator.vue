@@ -1,17 +1,17 @@
 <template>
     <div class="shipping-calculator">
       <div class="flex items-center justify-between cursor-pointer" @click="toggleShippingCalculator">
-        <h4 class="text-base font-medium">CALCULATE SHIPPING</h4>
+        <h4 class="text-xs lg:text-base">CALCULATE SHIPPING</h4>
         <svg 
-          class="w-4 h-4 transform transition-transform duration-200"
+          class="transform transition-transform duration-200"
           :class="{ 'rotate-180': !isExpanded }"
-          width="14" 
+          width="12" 
           height="8" 
           viewBox="0 0 14 8" 
           fill="none" 
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path d="M1 1L7 7L13 1" stroke="black" stroke-width="1.5"/>
+          <path d="M1 1L7 7L13 1" stroke="#707070" stroke-width="1.5"/>
         </svg>
       </div>
       
@@ -19,7 +19,7 @@
         <div class="relative">
           <select 
             v-model="selectedCountry" 
-            class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-black appearance-none bg-transparent"
+            class="w-full border-b border-gray-300 py-3 text-[#707070] focus:outline-none focus:border-black appearance-none bg-transparent"
             required
           >
             <option value="" disabled selected>SELECT A COUNTRY</option>
@@ -27,7 +27,7 @@
           </select>
           <div class="absolute inset-y-0 right-0 flex items-center pointer-events-none">
             <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1L6 6L11 1" stroke="black" stroke-width="1.5"/>
+              <path d="M1 1L6 6L11 1" stroke="#707070" stroke-width="1.5"/>
             </svg>
           </div>
         </div>
@@ -35,7 +35,7 @@
         <div class="relative">
           <select 
             v-model="selectedCity" 
-            class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-black appearance-none bg-transparent"
+            class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-black appearance-none bg-transparent text-[#707070]"
             :disabled="!selectedCountry"
             required
           >
@@ -44,7 +44,7 @@
           </select>
           <div class="absolute inset-y-0 right-0 flex items-center pointer-events-none">
             <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1L6 6L11 1" stroke="black" stroke-width="1.5"/>
+              <path d="M1 1L6 6L11 1" stroke="#707070" stroke-width="1.5"/>
             </svg>
           </div>
         </div>
@@ -52,7 +52,7 @@
         <div class="relative">
           <select 
             v-model="selectedZip" 
-            class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-black appearance-none bg-transparent"
+            class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-black appearance-none bg-transparent text-[#707070]"
             :disabled="!selectedCity"
             required
           >
@@ -61,7 +61,7 @@
           </select>
           <div class="absolute inset-y-0 right-0 flex items-center pointer-events-none">
             <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1L6 6L11 1" stroke="black" stroke-width="1.5"/>
+              <path d="M1 1L6 6L11 1" stroke="#707070" stroke-width="1.5"/>
             </svg>
           </div>
         </div>

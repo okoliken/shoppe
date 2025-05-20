@@ -85,7 +85,10 @@
 
       <MobileMenu :showMobileMenu="showMobileMenu" />
     </header>
-    <AlertBanner class="tramsform -translate-y-6" />
+    <AlertBanner
+      v-if="showAlert"
+      @view-cart="() => $router.push('/shopping-cart')"
+    />
   </div>
 </template>
 
@@ -100,8 +103,17 @@ import IconClose from "../icons/IconClose.vue";
 import MobileMenu from "./MobileMenu.vue";
 import AlertBanner from "./AlertBanner.vue";
 import { ref } from "vue";
+import { useCartStore } from "@/stores/cartStore";
 
 const showMobileMenu = ref(false);
+const showAlert = ref(false);
+
+const cartStore = useCartStore();
+
+cartStore.$subscribe(() => {
+  showAlert.value = true;
+  setTimeout(() => (showAlert.value = false), 5000);
+});
 
 const links = [
   {

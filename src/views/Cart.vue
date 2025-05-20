@@ -8,12 +8,12 @@
       </h3>
     </div>
 
-    <div class="grid grid-cols-2 mt-16">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-16 mt-4 lg:mt-16">
       <div>
         <div
           v-for="(item, index) in cartItems"
           :key="`${item.id}-${index}`"
-          class="flex gap-[39px] border-b border-[#D8D8D8] py-[39px] w-full"
+          class="flex gap-4 lg:gap-[39px] border-b border-[#D8D8D8] py-[39px] w-full"
         >
           <div class="bg-gray-100 flex-shrink-0 w-[136px] h-[136px]">
             <img
@@ -26,22 +26,22 @@
           <div class="flex-1">
             <div class="flex justify-between items-start">
               <div>
-                <h3 class="text-xl text-black mb-3.5">
+                <h3 class="text-xs lg:text-xl text-black lg:mb-3.5">
                   {{ item.name }}
                 </h3>
-                <p class="text-base text-[#707070] mb-0.5">
+                <p class="text-xs lg:text-base text-[#707070] lg:mb-0.5">
                   {{ item.variant }}
                 </p>
-                <p class="text-base text-[#A18A68]">
+                <p class="text-xs lg:text-base text-[#A18A68]">
                   $ {{ item.price.toFixed(2) }}
                 </p>
               </div>
-              <ItemCounter class="w-[120px]" />
+              <ItemCounter class="w-[120px] hidden lg:block" />
               <button
                 @click="removeItem(index)"
                 class="text-gray-600 cursor-pointer"
               >
-                <span class="text-xl"
+                <span class="text-xl hidden lg:block"
                   ><svg
                     width="14"
                     height="14"
@@ -56,15 +56,30 @@
                     />
                   </svg>
                 </span>
+                <span class="text-xs block lg:hidden"
+                  ><svg
+                    width="8"
+                    height="8"
+                    viewBox="0 0 8 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1.09172L6.90828 7M1 6.90828L6.90828 1"
+                      stroke="black"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </span>
               </button>
             </div>
           </div>
         </div>
 
-        <div class="mt-[39px] flex items-end justify-end">
+        <div class="mt-[39px] lg:flex lg:items-end lg:justify-end">
           <Button
             variant="outlineDark"
-            class="w-[168px]"
+            class="w-full lg:w-[168px]"
             as="a"
             href="/shopping-cart"
           >
@@ -72,7 +87,7 @@
           </Button>
         </div>
 
-        <div class="flex gap-x-14 mt-16">
+        <div class="lg:flex lg:gap-x-14 mt-16">
           <input
             id="review-name"
             type="text"
@@ -80,110 +95,68 @@
             class="w-full border-b border-gray-300 py-3 focus:outline-none focus:border-black"
             required
           />
-          <Button class="w-[168px]"> APPLY COUPON </Button>
+          <Button class="w-full lg:w-[168px] mt-4"> APPLY COUPON </Button>
         </div>
       </div>
 
-      <div class="p-14">
-        <h3 class="text-[26px]">Cart totals</h3>
+      <div class="mt-14 lg:mt-0 p-4 rounded lg:p-14 bg-[#EFEFEF]">
+        <h3 class="text-base lg:text-[26px]">Cart totals</h3>
         <div class="flex items-center justify-between mt-11">
-          <p class="text-base">SUBTOTAL</p>
-          <span class="text-base text-[#707070]">$ 65,00</span>
+          <p class="text-xs lg:text-base">SUBTOTAL</p>
+          <span class="text-xs lg:text-base text-[#707070]">$ 65,00</span>
         </div>
         <div class="flex items-center justify-between mt-6">
-          <p class="text-base">SHIPPING</p>
-          <span class="text-base text-[#707070]"
+          <p class="text-xs lg:text-base">SHIPPING</p>
+          <span class="text-xs lg:text-base text-[#707070]"
             >Shipping costs will be calculated <br />
             once you have provided address.</span
           >
         </div>
+        <div class="my-10 flex justify-end">
+          <ShippingCalculator class="w-[250px]" @update-shipping="() => {}" />
+        </div>
+
+        <hr class="my-8 border-t border-[#D8D8D8]" />
+
+        <div class="flex items-center justify-between mt-[42px]">
+          <p class="text-xs lg:text-xl font-medium">TOTAL</p>
+          <span class="text-xs lg:text-xl font-medium">$ </span>
+        </div>
+
+        <Button
+          class="w-full mt-[45px] py-4 bg-black text-white hover:bg-gray-800"
+        >
+          PROCEED TO CHECKOUT
+        </Button>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from "vue";
-import LiraImage from "../assets/images/products/Img01.png";
-import OllieImage from "../assets/images/products/Img02.png";
-import KaedeImage from "../assets/images/products/Img03.png";
+import { defineComponent } from "vue";
 import Button from "@/components/ui/button/Button.vue";
 import ItemCounter from "@/components/ui/number-field/ItemCounter.vue";
+import ShippingCalculator from "@/components/cart/ShippingCalculator.vue";
+import { useCartStore } from "@/stores/cartStore";
 
 export default defineComponent({
   name: "Cart",
   components: {
     Button,
     ItemCounter,
+    ShippingCalculator,
   },
   setup() {
-    const cartItems = ref([
-      {
-        id: 1,
-        name: "Lira Earrings",
-        variant: "Black / Medium",
-        price: 20.0,
-        quantity: 1,
-        imageUrl: LiraImage,
-      },
-      {
-        id: 2,
-        name: "Ollie Earrings",
-        variant: "Black / Medium",
-        price: 20.0,
-        quantity: 3,
-        imageUrl: OllieImage,
-      },
-      {
-        id: 3,
-        name: "Kaede Hair Pin",
-        variant: "Black / Medium",
-        price: 20.0,
-        quantity: 1,
-        imageUrl: KaedeImage,
-      },
-      {
-        id: 2, // Same ID as Ollie Earrings to demonstrate multiple items of same product
-        name: "Ollie Earrings",
-        variant: "Black / Medium",
-        price: 20.0,
-        quantity: 1,
-        imageUrl: OllieImage,
-      },
-    ]);
+    const cartStore = useCartStore();
 
-    const subtotal = computed(() => {
-      return cartItems.value.reduce(
-        (sum, item) => sum + item.price * item.quantity,
-        0
-      );
-    });
-
-    const totalItemCount = computed(() => {
-      return cartItems.value.reduce((sum, item) => sum + item.quantity, 0);
-    });
-
-    // Methods
-    const incrementQuantity = (index: number) => {
-      cartItems.value[index].quantity++;
-    };
-
-    const decrementQuantity = (index: number) => {
-      if (cartItems.value[index].quantity > 1) {
-        cartItems.value[index].quantity--;
-      }
-    };
-
-    const removeItem = (index: number) => {
-      cartItems.value.splice(index, 1);
-    };
     return {
-      cartItems,
-      removeItem,
-      decrementQuantity,
-      incrementQuantity,
-      totalItemCount,
-      subtotal,
+      cartItems: cartStore.cartItems,
+      subtotal: cartStore.subtotal,
+      totalItemCount: cartStore.totalItemCount,
+      removeItem: cartStore.removeItem,
+      incrementQuantity: cartStore.incrementQuantity,
+      decrementQuantity: cartStore.decrementQuantity,
     };
   },
 });
