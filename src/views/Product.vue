@@ -245,18 +245,21 @@ const similarProducts = [
     price: 199.99,
     discountPrice: 159.99,
     imageUrl: ImageThree,
+    inStock: false,
   },
   {
     id: 8,
     name: "Gold Big Hoops",
     price: 599.99,
     imageUrl: ImageEight,
+    inStock: true,
   },
   {
     id: 6,
     name: "Yuki Hair Pin Set of 3",
     price: 499.99,
     imageUrl: ImageSix,
+    inStock: true,
   },
 ];
 </script>

@@ -20,7 +20,7 @@
     </div>
 
     <!-- Product Grid -->
-    <div
+    <motion.div
       v-else
       :class="
         cn(
@@ -28,15 +28,27 @@
           reduceProductSpacing ? 'lg:gap-x-6 lg:gap-y-[70px]' : 'lg:gap-x-[57px] lg:gap-y-[86px]'
         )
       "
+      :initial="{ opacity: 0, y: 20 }"
+      :animate="{ opacity: 1, y: 0 }"
+      :transition="{ staggerChildren: 0.1, duration: 0.5 }"
     >
-      <Product v-for="product in products" :product="product" :key="product.id" />
-    </div>
+      <motion.div
+        v-for="product in products"
+        :key="product.id"
+        :initial="{ opacity: 0, scale: 0.9 }"
+        :animate="{ opacity: 1, scale: 1 }"
+        :transition="{ duration: 0.3 }"
+      >
+        <Product :product="product" />
+      </motion.div>
+    </motion.div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { cn } from "@/lib/utils";
 import Product from "./Product.vue";
+import { motion } from "motion-v";
 
 defineProps<{
   title?: string;
@@ -47,6 +59,7 @@ defineProps<{
     name: string;
     price: number;
     imageUrl: string;
+    inStock: boolean;
   }[];
   reduceProductSpacing?: boolean;
 }>();
