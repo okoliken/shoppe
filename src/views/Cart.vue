@@ -1,14 +1,24 @@
 <template>
   <div class="container mx-auto flex flex-col">
     <div class="mt-4 lg:mt-[96px]">
-      <h3
-        class="text-left lg:text-center text-lg lg:text-[33px] lg:font-medium"
-      >
+      <h3 class="text-left lg:text-center text-lg lg:text-[33px] lg:font-medium">
         Shopping Cart
       </h3>
     </div>
 
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-16 mt-4 lg:mt-16">
+    <!-- Empty Cart State -->
+    <div v-if="!cartItems.length" class="flex flex-col items-center justify-center mt-16">
+      <p class="text-gray-500 text-lg mb-6">Your cart is empty</p>
+      <RouterLink 
+        to="/shop" 
+        class="px-8 py-3 border border-black text-sm hover:bg-black hover:text-white transition-colors"
+      >
+        Continue Shopping
+      </RouterLink>
+    </div>
+
+    <!-- Cart Items -->
+    <div v-else class="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-16 mt-4 lg:mt-16">
       <div>
         <div
           v-for="(item, index) in cartItems"
@@ -133,31 +143,12 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import Button from "@/components/ui/button/Button.vue";
-import ItemCounter from "@/components/ui/number-field/ItemCounter.vue";
-import ShippingCalculator from "@/components/cart/ShippingCalculator.vue";
+<script setup lang="ts">
+import { storeToRefs } from "pinia";
 import { useCartStore } from "@/stores/cartStore";
+import ItemCounter from "@/components/ui/number-field/ItemCounter.vue";
 
-export default defineComponent({
-  name: "Cart",
-  components: {
-    Button,
-    ItemCounter,
-    ShippingCalculator,
-  },
-  setup() {
-    const cartStore = useCartStore();
-
-    return {
-      cartItems: cartStore.cartItems,
-      subtotal: cartStore.subtotal,
-      totalItemCount: cartStore.totalItemCount,
-      removeItem: cartStore.removeItem,
-      incrementQuantity: cartStore.incrementQuantity,
-      decrementQuantity: cartStore.decrementQuantity,
-    };
-  },
-});
+const cartStore = useCartStore();
+const { cartItems } = storeToRefs(cartStore);
+const { removeItem } = cartStore;
 </script>

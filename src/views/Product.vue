@@ -156,7 +156,6 @@ import Reviews from "@/components/Reviews.vue";
 import { useCartStore } from "@/stores/cartStore";
 
 const cartStore = useCartStore();
-const showAlert = ref(false);
 
 const addToCartHandler = (): void => {
   cartStore.addToCart({

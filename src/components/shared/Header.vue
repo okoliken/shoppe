@@ -85,10 +85,19 @@
 
       <MobileMenu :showMobileMenu="showMobileMenu" />
     </header>
+    <motion.div
+      :initial="{ opacity: 0, y: -20 }"
+      :animate="{ opacity: 1, y: 0 }"
+      :exit="{ opacity: 0, y: -20 }"
+      :transition="{ duration: 0.3, ease: 'easeInOut' }"
+    >
+   
     <AlertBanner
       v-if="showAlert"
+      class="transform -translate-y-6"
       @view-cart="() => $router.push('/shopping-cart')"
     />
+    </motion.div>
   </div>
 </template>
 
@@ -104,6 +113,7 @@ import MobileMenu from "./MobileMenu.vue";
 import AlertBanner from "./AlertBanner.vue";
 import { ref } from "vue";
 import { useCartStore } from "@/stores/cartStore";
+import { motion } from "motion-v";
 
 const showMobileMenu = ref(false);
 const showAlert = ref(false);

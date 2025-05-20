@@ -11,7 +11,7 @@
         </span>
       </div>
     </SheetTrigger>
-    <SheetContent class="overflow-y-auto z-[999]">
+    <SheetContent class="w-full sm:w-[440px] overflow-y-auto z-[999] flex flex-col">
       <SheetHeader class="mt-10 sm:mt-16 px-6 sm:px-9">
         <SheetTitle class="text-xl font-normal">Shopping bag</SheetTitle>
         <SheetDescription
@@ -29,9 +29,9 @@
         <p class="text-gray-500">No shopping bag items</p>
       </div>
 
-      <div v-else>
+      <div v-else class="flex flex-col h-full">
         <!-- Cart Items -->
-        <div class="px-6 sm:px-9">
+        <div class="px-6 sm:px-9 flex-grow overflow-y-auto pb-[200px] sm:pb-0">
           <div
             v-for="(item, index) in cartItems"
             :key="`${item.id}-${index}`"
@@ -92,7 +92,7 @@
         </div>
 
         <!-- Subtotal -->
-        <div class="mt-8 py-6 border-t border-gray-200 px-6 sm:px-9">
+        <div class="fixed sm:relative bottom-0 left-0 right-0 bg-white mt-auto w-full py-6 border-t border-gray-200 px-6 sm:px-9">
           <div class="flex justify-between items-center mb-6">
             <h3 class="text-base">Subtotal ({{ totalItemCount }} items)</h3>
             <p class="text-base">$ {{ subtotal.toFixed(2) }}</p>
