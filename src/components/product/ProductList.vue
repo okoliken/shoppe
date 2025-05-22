@@ -15,40 +15,47 @@
     </div>
 
     <!-- Empty State -->
-    <div v-if="products.length === 0" class="flex items-center justify-center py-10">
-      <p class="text-gray-500 text-lg">No products available</p>
-    </div>
-
-    <!-- Product Grid -->
-    <motion.div
-      v-else
-      :class="
-        cn(
-          'grid grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-4',
-          reduceProductSpacing ? 'lg:gap-x-6 lg:gap-y-[70px]' : 'lg:gap-x-[57px] lg:gap-y-[86px]'
-        )
-      "
-      :initial="{ opacity: 0, y: 20 }"
-      :animate="{ opacity: 1, y: 0 }"
-      :transition="{ staggerChildren: 0.1, duration: 0.5 }"
-    >
-      <motion.div
-        v-for="product in products"
-        :key="product.id"
-        :initial="{ opacity: 0, scale: 0.9 }"
-        :animate="{ opacity: 1, scale: 1 }"
-        :transition="{ duration: 0.3 }"
+    <AnimatePresence>
+      <div
+        v-if="products.length === 0"
+        class="flex items-center justify-center py-10"
       >
-        <Product :product="product" />
+        <p class="text-gray-500 text-lg">No products available</p>
+      </div>
+
+      <!-- Product Grid -->
+      <motion.div
+        v-else
+        :class="
+          cn(
+            'grid grid-cols-2 lg:grid-cols-3 gap-y-6 gap-x-4',
+            reduceProductSpacing
+              ? 'lg:gap-x-6 lg:gap-y-[70px]'
+              : 'lg:gap-x-[57px] lg:gap-y-[86px]'
+          )
+        "
+        :initial="{ opacity: 0, y: 20 }"
+        :animate="{ opacity: 1, y: 0 }"
+        :transition="{ staggerChildren: 0.1, duration: 0.5 }"
+      >
+        <motion.div
+          v-for="product in products"
+          :key="product.id"
+          :initial="{ opacity: 0, scale: 0.9 }"
+          :animate="{ opacity: 1, scale: 1 }"
+          :transition="{ duration: 0.3 }"
+        >
+          <Product :product="product" />
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </AnimatePresence>
   </div>
 </template>
 
 <script setup lang="ts">
 import { cn } from "@/lib/utils";
 import Product from "./Product.vue";
-import { motion } from "motion-v";
+import { motion, AnimatePresence } from "motion-v";
 
 defineProps<{
   title?: string;

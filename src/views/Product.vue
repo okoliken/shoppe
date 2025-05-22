@@ -29,7 +29,9 @@
               {{ totalReviews === 1 ? "review" : "reviews" }}</label
             >
           </div>
-          <p class="text-[#707070] text-xs lg:text-base leading-[20px] lg:leading-[27px]">
+          <p
+            class="text-[#707070] text-xs lg:text-base leading-[20px] lg:leading-[27px]"
+          >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam
             placerat, augue a volutpat hendrerit, sapien tortor faucibus augue,
             a maximus elit ex vitae libero. Sed quis mauris eget arcu facilisis
@@ -38,7 +40,11 @@
 
           <div class="mt-12 flex items-center gap-x-6">
             <ItemCounter class="w-[120px] hidden md:block" />
-            <Button variant="outlineDark" class="flex-1" @click="addToCartHandler">
+            <Button
+              variant="outlineDark"
+              class="flex-1"
+              @click="addToCartHandler"
+            >
               ADD TO CART
             </Button>
           </div>
@@ -161,6 +167,7 @@ const addToCartHandler = (): void => {
   cartStore.addToCart({
     id: 1,
     name: "Lira Earrings",
+    variant: "Black / Medium",
     price: 20.0,
     imageUrl: galleryImages[0].src,
     quantity: 1,

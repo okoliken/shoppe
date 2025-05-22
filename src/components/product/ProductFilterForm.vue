@@ -9,6 +9,7 @@
         class="w-full border-b border-[#D8D8D8] pb-3 outline-none"
         placeholder="Search by name"
       />
+      <IconSearchBig class="absolute top-0 right-0" />
     </div>
 
     <!-- Select dropdowns -->
@@ -98,6 +99,7 @@
 <script setup lang="ts">
 import PriceRangeSlider from "@/components/ui/PriceRangeSlider.vue";
 import Switch from "@/components/ui/switch/Switch.vue";
+import IconSearchBig from "../icons/IconSearchBig.vue";
 import {
   Select,
   SelectContent,

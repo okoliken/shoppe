@@ -134,7 +134,7 @@
         </div>
 
         <Button
-          class="w-full mt-[45px] py-4 bg-black text-white hover:bg-gray-800"
+          class="w-full mt-[45px]"
         >
           PROCEED TO CHECKOUT
         </Button>
@@ -147,6 +147,7 @@
 import { storeToRefs } from "pinia";
 import { useCartStore } from "@/stores/cartStore";
 import ItemCounter from "@/components/ui/number-field/ItemCounter.vue";
+import Button from "@/components/ui/button/Button.vue";
 
 const cartStore = useCartStore();
 const { cartItems } = storeToRefs(cartStore);

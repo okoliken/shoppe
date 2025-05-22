@@ -55,7 +55,7 @@
               <button class="hidden md:block cursor-pointer">
                 <IconSearchBig />
               </button>
-              <button class="cursor-pointer">
+              <button class="cursor-pointer transform -translate-y-0.5">
                 <ShoppingBag />
               </button>
               <button class="hidden md:block cursor-pointer">
@@ -74,30 +74,23 @@
           </div>
         </div>
       </div>
-      <div class="relative block md:hidden">
-        <IconSearch class="absolute left-2.5 top-2.5" />
-        <input
-          class="h-8 w-full !bg-gray-input rounded pl-[30px] outlin-none appearance-none z-10 focus:ring-2 focus:ring-amber-600 focus:outline-none"
-          type="text"
-          placeholder="Search"
-        />
-      </div>
 
       <MobileMenu :showMobileMenu="showMobileMenu" />
     </header>
-    <motion.div
-      :initial="{ opacity: 0, y: -20 }"
-      :animate="{ opacity: 1, y: 0 }"
-      :exit="{ opacity: 0, y: -20 }"
-      :transition="{ duration: 0.3, ease: 'easeInOut' }"
-    >
-   
-    <AlertBanner
-      v-if="showAlert"
-      class="transform -translate-y-6"
-      @view-cart="() => $router.push('/shopping-cart')"
-    />
-    </motion.div>
+    <AnimatePresence>
+      <motion.div
+        v-if="showAlert"
+        :initial="{ opacity: 0, y: -6 }"
+        :animate="{ opacity: 1, y: 0 }"
+        :exit="{ opacity: 0 }"
+        :transition="{ type: 'tween', ease: 'easeOut', duration: 0.3 }"
+      >
+        <AlertBanner
+          class="absolute transform -translate-y-6"
+          @view-cart="() => $router.push('/shopping-cart')"
+        />
+      </motion.div>
+    </AnimatePresence>
   </div>
 </template>
 
@@ -106,14 +99,13 @@ import IconLogo from "../icons/IconLogo.vue";
 import ShoppingBag from "../ShoppingBag.vue";
 import IconMenuClosed from "../icons/IconMenuClosed.vue";
 import IconUser from "../icons/IconUser.vue";
-import IconSearch from "../icons/IconSearch.vue";
 import IconSearchBig from "../icons/IconSearchBig.vue";
 import IconClose from "../icons/IconClose.vue";
 import MobileMenu from "./MobileMenu.vue";
 import AlertBanner from "./AlertBanner.vue";
 import { ref } from "vue";
 import { useCartStore } from "@/stores/cartStore";
-import { motion } from "motion-v";
+import { motion, AnimatePresence } from "motion-v";
 
 const showMobileMenu = ref(false);
 const showAlert = ref(false);

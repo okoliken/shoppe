@@ -2,7 +2,7 @@
   <div class="@container md:pt-8 xl:pt-16 relative">
     <div class="p-4 xl:p-0 @md:mx-auto @md:max-w-[1248px]">
       <Header class="md:mb-6" />
-      <main class="mt-4">
+      <main>
         <slot />
       </main>
       <Footer />
